@@ -1,66 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package taskdatabase;
 
-package models;
-
+/**
+ *
+ * @author sarat
+ */
 public class Player {
     
-    private int pid;
-    private String username;
-    private String password;
-    private String firstname;
-    private String lastname;
-    private String record;
-    private short status;
-
-    public int getPid() {
-        return pid;
+    int ID;
+    String firstName;
+    String lastName;
+    String email;
+    int score;
+    String password;
+   public Player(){
+   
+   
+   }
+   public Player(String fName,String lName,String email){
+   
+       firstName=fName;
+       lastName=lName;
+       this.email=email;
+       score=0;
+   
+   }
+    
+    void setfirstName(String fname){
+       firstName=fname;
     }
-
-    public String getUsername() {
-        return username;
+    
+    void setlastName(String lname){
+       lastName=lname;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
+    
+    void setEmail(String em){
+       email=em;
     }
-
-    public String getPassword() {
+    
+    void setScore(int sc){
+       score=sc;
+    }
+    
+     void setPassword(String pass){
+       password=pass;
+    }
+    
+    String getfirstName(){
+        return firstName;
+    }
+    String getlastName(){
+        return lastName;
+    }
+    String getEmail(){
+        return email;
+    }
+    int getScore(){
+        return score;
+    }
+    
+    String getPassword(){
+    
         return password;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getRecord() {
-        return record;
-    }
-
-    public void setRecord(String record) {
-        this.record = record;
-    }
-
-    public short getStatus() {
-        return status;
-    }
-
-    public void setStatus(short status) {
-        this.status = status;
-    }
+    
+    
     
 }
