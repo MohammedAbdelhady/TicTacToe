@@ -1,18 +1,16 @@
-
 package tictactoegame;
 
 import java.util.Vector;
-import javafx.application.Application;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 
 public class TicTacToeGame extends Application {
     
@@ -157,10 +155,23 @@ public class TicTacToeGame extends Application {
         }
     }
     
-
+//    @Override
+//    public void start(Stage stage) {
+//
+//        try {
+//            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+//
+//            Scene scene = new Scene(root);
+//
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (IOException ex) {
+//            Logger.getLogger(TicTacToeGame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
