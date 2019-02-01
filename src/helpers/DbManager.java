@@ -27,11 +27,9 @@ public class DbManager {
     public boolean connect() throws ClassNotFoundException{
         try {
                 
-                String url="jdbc:mysql://sql2.freemysqlhosting.net:3306/";
-                String databaseName="sql2276419";
-                String user="sql2276419";
-                String Password="xH7*hD4*";
-                conn= DriverManager.getConnection(url+databaseName,user,Password);
+                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+                String url="jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2276419";
+                conn= DriverManager.getConnection(url,"sql2276419","xH7*hD4*");
             
                  playerList=getAllPlayers();
                  return true;
