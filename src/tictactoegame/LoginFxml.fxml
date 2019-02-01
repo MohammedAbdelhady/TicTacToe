@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoegame.LoginFxmlController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label>
+            <Label layoutX="212.0" layoutY="42.0" prefHeight="18.0" prefWidth="215.0" text="TicTacToe" textAlignment="RIGHT">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Temail" layoutX="296.0" layoutY="151.0" />
+
+            <Text layoutX="169.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email:" wrappingWidth="110.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="169.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="110.13672351837158">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="232.0" layoutY="264.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="175.0" onAction="#login"  text="Login" />
+            <Button layoutX="233.0" layoutY="309.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="175.0" onAction="#signUp"  text="SignUp" />
+            <Text layoutX="224.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="do not have account please sign up " wrappingWidth="250.936767578125" />
+            <Text fx:id="password" layoutX="541.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
+            <Text fx:id="email" layoutX="533.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
+             <Label fx:id="emaillabel"  layoutX="493.0" layoutY="152.0" prefHeight="21.0" prefWidth="147.0" />
+            <Label fx:id="passwordlabel" layoutX="494.0" layoutY="204.0" prefHeight="21.0" prefWidth="200.0" />
+             <Label fx:id="found" layoutX="250.0" layoutY="231.0" prefHeight="21.0" prefWidth="522.0" />
+             <PasswordField fx:id="Tpassword" layoutX="296.0" layoutY="200.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

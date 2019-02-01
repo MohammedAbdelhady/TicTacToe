@@ -15,7 +15,7 @@ public class TicTacToeGame extends Application {
     public void start(Stage stage) {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("LoginFxml.fxml"));
 
             Scene scene = new Scene(root);
 
