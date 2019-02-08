@@ -2,65 +2,81 @@
 package models;
 
 public class Player {
-    
-    private int pid;
-    private String username;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private int score;
     private String password;
-    private String firstname;
-    private String lastname;
-    private String record;
-    private short status;
-
-    public int getPid() {
-        return pid;
+    private int status;
+    
+    
+   public Player(){
+   
+   
+   }
+   public Player(String fName,String lName,String email,String password){
+   
+       firstName=fName;
+       lastName=lName;
+       this.email=email;
+       this.password=password;
+       score=0;
+       status = 1;
+       
+   
+   }
+   
+   public void setid(int id){
+   
+       this.id=id;
+   }
+    
+    public void setfirstName(String fname){
+       firstName=fname;
     }
-
-    public String getUsername() {
-        return username;
+    
+    public void setlastName(String lname){
+       lastName=lname;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
+    
+    public void setEmail(String em){
+       email=em;
     }
-
-    public String getPassword() {
+    
+    public void setScore(int sc){
+       score=sc;
+    }
+    
+    public void setPassword(String pass){
+       password=pass;
+    }
+    
+    public String getfirstName(){
+        return firstName;
+    }
+    public String getlastName(){
+        return lastName;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public int getScore(){
+        return score;
+    }
+    
+    public String getPassword(){
+    
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getRecord() {
-        return record;
-    }
-
-    public void setRecord(String record) {
-        this.record = record;
-    }
-
-    public short getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(int status) {
         this.status = status;
     }
+    
     
 }
