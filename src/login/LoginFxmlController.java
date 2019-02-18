@@ -21,14 +21,9 @@ import networking.Client;
 
 public class LoginFxmlController implements Initializable {
 
-    @FXML
-    private Label label;
+ 
     @FXML
     private TextField Temail;
-    @FXML
-    private Label emaillabel;
-    @FXML
-    private Label passwordlabel;
     @FXML
     private Label found;
     @FXML
@@ -43,18 +38,11 @@ public class LoginFxmlController implements Initializable {
 
         String em = Temail.getText();
         String pass = Tpassword.getText();
-        //System.out.println(em);
-        if (em.equals("")) {
-            emaillabel.setText("please enter an email");
-        }
-        if (pass.equals("")) {
-            passwordlabel.setText("please enter an password");
-        } else {
+    
+        if (!em.equals("") && !pass.equals("")){
             boolean connect = db.connect();
             if (connect == true) {
-                //found.setText("connected");
-                emaillabel.setText("");
-                passwordlabel.setText("");
+               
                 Player playerFounded;
                 playerFounded = db.getPlayer(em);
                 if (playerFounded == null) {
@@ -79,8 +67,6 @@ public class LoginFxmlController implements Initializable {
                     Tpassword.setText("");
                 }
             } else {
-                emaillabel.setText("");
-                passwordlabel.setText("");
                 Temail.setText("");
                 Tpassword.setText("");
                 found.setText("please connect to database");

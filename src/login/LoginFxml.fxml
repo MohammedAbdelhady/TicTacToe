@@ -1,51 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginFxmlController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <Label layoutX="212.0" layoutY="42.0" prefHeight="18.0" prefWidth="215.0" text="TicTacToe" textAlignment="RIGHT">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-            <TextField fx:id="Temail" layoutX="296.0" layoutY="151.0" />
-
-            <Text layoutX="169.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email:" wrappingWidth="110.13671875">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="169.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="110.13672351837158">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Button layoutX="232.0" layoutY="264.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="175.0" onAction="#login"  text="Login" />
-            <Button layoutX="233.0" layoutY="309.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="175.0" onAction="#signUp"  text="SignUp" />
-            <Text layoutX="224.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="do not have account please sign up " wrappingWidth="250.936767578125" />
-            <Text fx:id="password" layoutX="541.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
-            <Text fx:id="email" layoutX="533.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
-             <Label fx:id="emaillabel"  layoutX="493.0" layoutY="152.0" prefHeight="21.0" prefWidth="147.0" />
-            <Label fx:id="passwordlabel" layoutX="494.0" layoutY="204.0" prefHeight="21.0" prefWidth="200.0" />
-             <Label fx:id="found" layoutX="250.0" layoutY="231.0" prefHeight="21.0" prefWidth="522.0" />
-          
-             <PasswordField fx:id="Tpassword" layoutX="296.0" layoutY="200.0" />
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="500.0" stylesheets="@TEST.CSS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginFxmlController">
+    <children>
+      <ImageView fitHeight="221.0" fitWidth="302.0" layoutX="136.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cooltext315191423524635.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Line endX="100.0" layoutX="264.0" layoutY="91.0" startX="-115.0" />
+      <Line endX="100.0" layoutX="264.0" layoutY="159.0" startX="-115.0" />
+      <Line endX="-52.0" endY="55.0" layoutX="268.0" layoutY="179.0" startX="-52.0" startY="-137.0" />
+      <Line endX="-52.0" endY="55.0" layoutX="343.0" layoutY="179.0" startX="-52.0" startY="-137.0" />
+      <Line endX="-85.0" endY="170.0" layoutX="271.0" layoutY="65.0" startX="-105.0" startY="-43.0" stroke="#f04344" strokeWidth="5.0" />
+      <ImageView fitHeight="45.0" fitWidth="99.0" layoutX="53.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@picturetopeople.org-fcd773ea5c0c68e596dd0382657e3f464db7b54c798fb61d2b.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="151.0" layoutX="27.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@picturetopeople.org-cdaac54d2d41ec62fe227fe3a1b565941d1a4d05cb6c70b72a.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="44.0" layoutY="414.0" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="182.0" styleClass="loginButton" stylesheets="@TEST.CSS" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="48.0" />
+         </font>
+      </Button>
+      <Button layoutX="262.0" layoutY="414.0" mnemonicParsing="false" onAction="#signUp" prefHeight="45.0" prefWidth="192.0" styleClass="loginButton" stylesheets="@TEST.CSS" text="Sign up" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="48.0" />
+         </font>
+      </Button>
+      <TextField fx:id="Temail" layoutX="190.0" layoutY="284.0" prefHeight="31.0" prefWidth="236.0" />
+      <PasswordField fx:id="Tpassword" layoutX="190.0" layoutY="348.0" prefHeight="31.0" prefWidth="236.0" />
+      <Label fx:id="found" layoutX="189.0" layoutY="244.0" prefHeight="37.0" prefWidth="236.0" wrapText="true">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+    </children>
+</AnchorPane>

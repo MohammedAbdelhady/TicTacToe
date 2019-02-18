@@ -1,0 +1,28 @@
+.loginButton{
+  -fx-background-color:#1E90FF;
+  -fx-border-radius: 100px;
+  -fx-fill:white;
+  -fx-boarder-width: 5px;
+  -fx-position:relative;
+  -fx-height:60px;
+  -fx-font-size:24;
+  -fx-padding:0 2em;
+  -fx-cursor:pointer;
+  -fx-transition:800ms ease all;
+  -fx-outline:none;
+}
+.loginButton:hover{
+  -fx-background-color:#fff;
+  -fx-background-raduis: 22;
+  -fx-font-size: 24;
+  -fx-text-fill: #1E90FF;
+  -fx-boarder-color: #1E90FF;
+  -fx-borader-raduis: 100;
+  -fx-boarder-width: 20;
+}
+
+.myPane
+{
+    -fx-background-color: black;
+
+}
