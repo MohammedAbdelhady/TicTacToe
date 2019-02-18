@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<GridPane alignment="CENTER" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="networking.ListViewController" >
+<GridPane alignment="CENTER" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="TicTacToeGame.ListViewController" >
      <ListView fx:id="listView" prefHeight="500.0" prefWidth="400.0" GridPane.columnIndex="1" />
    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Button fx:id="start" mnemonicParsing="false" onAction="#handelStartServerButtonClicked" text="Start Server">
+         <Button fx:id="playWithComputer" mnemonicParsing="false" onAction="#handelPlayWithComputerButtonClicked" text="Play With Computer">
             <VBox.margin>
                <Insets bottom="10.0" />
             </VBox.margin>
          </Button>
-         <Button fx:id="stop" mnemonicParsing="false" onAction="#handelStopServerButtonClicked" text="Stop Server" />
+         <Button fx:id="challenge" mnemonicParsing="false" onAction="#handelChallengeButtonClicked" text="Challenge" />
       </children>
    </VBox>
    <columnConstraints>

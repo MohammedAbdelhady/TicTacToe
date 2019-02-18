@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/Gom3aa/NetBeansProjects/TicTacToeGame/src/helpers/DBHelper.java</file>
-            <file>file:/home/Gom3aa/NetBeansProjects/TicTacToeGame/src/tictactoegame/TicTacToeGame.java</file>
-            <file>file:/home/Gom3aa/NetBeansProjects/TicTacToeGame/src/models/Player.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/TicTacToeGame/listview.fxml</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/networking/Server.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/TicTacToeGame/ListViewController.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/helpers/DbManager.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/login/LoginFxmlController.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/TicTacToeGame/TicTacToeGame.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/TwoPlayersGame/TwoPlayersBoardController.java</file>
+            <file>file:/C:/Users/Gomaa/Documents/NetBeansProjects/TicTacToe/src/networking/ServerApplication.java</file>
         </group>
     </open-files>
 </project-private>

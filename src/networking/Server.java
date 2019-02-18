@@ -32,7 +32,7 @@ public class Server {
                 ClientThread newThread = new ClientThread(socket);
                 clientList.add(newThread);
                 newThread.start();
-                display("player just connected on " +socket.getInetAddress());
+                display("player just connected on " + socket.getInetAddress());
 
             }
 
@@ -62,13 +62,26 @@ public class Server {
 
             if (clientList.get(i).username.equalsIgnoreCase(destination)) {
 
-                if(type.equals("chat")){
-                clientList.get(i).Output.println(type + "$[" + source + "] : " + msg);
-                display(msg);
-                }else if(type.equals("board")){
+                if (type.equals("chat")) {
+                    clientList.get(i).Output.println(type + "$[" + source + "] : " + msg);
+                    display(msg);
+                } else if (type.equals("board")) {
                     clientList.get(i).Output.println(type + "$" + msg);
-                display(msg);
+                    display(msg);
+                } else if (type.equals("challenge")) {
+                    clientList.get(i).Output.println(type + "$" + source + "$wants to challenge you to a game ? " + msg);
+                    display(msg);
+                } else if (type.equals("accepted")) {
+                    clientList.get(i).Output.println(type + "$" + source + "$Accepted the challenge" + msg);
+                    display(msg);
+                } else if (type.equals("lost")) {
+                    clientList.get(i).Output.println(type + "$" + source + "$Won the Game" + msg);
+                    display(msg);
+                } else if (type.equals("draw")) {
+                    clientList.get(i).Output.println(type + "$" + "Appears we have a draw");
+                    display(msg);
                 }
+
                 break;
 
             }
@@ -76,25 +89,23 @@ public class Server {
         }
     }
 
-    public void stop(){
-        
-         try {
+    public void stop() {
 
-                
-                for (int i = 0; i < clientList.size(); i++) {
-                    clientList.get(i).safelyClose();
-                    clientList.get(i).stop();
-                    clientList.remove(i);
-                }
-                
-                serverSocket.close();
-                
-                display("Bye : The Server Has been Closed ..");
-            } catch (IOException e) {
-                display("Can't Close the Server and Clients: " + e);
+        try {
+
+            for (int i = 0; i < clientList.size(); i++) {
+                clientList.get(i).safelyClose();
+                clientList.get(i).stop();
+                clientList.remove(i);
             }
+
+            serverSocket.close();
+
+            display("Bye : The Server Has been Closed ..");
+        } catch (IOException e) {
+            display("Can't Close the Server and Clients: " + e);
+        }
     }
-   
 
     class ClientThread extends Thread {
 
@@ -107,15 +118,13 @@ public class Server {
 
             this.socket = socket;
 
-            
-
         }
 
         @Override
         public void run() {
 
             String msg;
-            
+
             try {
 
                 Output = new PrintStream(socket.getOutputStream());
@@ -125,27 +134,31 @@ public class Server {
 
                 e.printStackTrace();
             }
-            
+
             while (true) {
                 try {
-                    
+
                     display("Here ");
                     msg = Input.readLine();
                     display(msg + " Message");
                     String[] separatedMsg = msg.split("\\$");
-                    display("length" + separatedMsg.length);
+                    display("length " + separatedMsg.length);
                     if (separatedMsg.length == 1) {
                         username = msg;
                         display(username + " is now connected.");
                     } else if (separatedMsg[0].equalsIgnoreCase("chat")) {
                         sendMessage(separatedMsg[0], username, separatedMsg[1], separatedMsg[2]);
                     } else if (separatedMsg[0].equalsIgnoreCase("challenge")) {
-                        
+                        sendMessage(separatedMsg[0], username, separatedMsg[1], "");
                     } else if (separatedMsg[0].equalsIgnoreCase("accepted")) {
-
+                        sendMessage(separatedMsg[0], username, separatedMsg[1], "");
                     } else if (separatedMsg[0].equalsIgnoreCase("board")) {
                         sendMessage(separatedMsg[0], username, separatedMsg[1], separatedMsg[2] + "$" + separatedMsg[3]);
-                    } 
+                    } else if (separatedMsg[0].equalsIgnoreCase("lost")) {
+                        sendMessage(separatedMsg[0], username, separatedMsg[1], "");
+                    } else if (separatedMsg[0].equalsIgnoreCase("draw")) {
+                        sendMessage(separatedMsg[0], username, separatedMsg[1], "");
+                    }
 
                 } catch (IOException ex) {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);

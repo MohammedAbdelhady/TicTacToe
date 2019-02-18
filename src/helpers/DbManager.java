@@ -27,8 +27,8 @@ public class DbManager {
     public boolean connect() throws ClassNotFoundException {
         try {
 
-            String url = "jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2277463";
-            conn = DriverManager.getConnection(url, "sql2277463", "iW6%vE8%");
+            String url = "jdbc:mysql://localhost:3306/tictactoe";
+            conn = DriverManager.getConnection(url, "root", "");
 
             if (conn != null) {
                 System.out.println("Connected");
@@ -78,20 +78,32 @@ public class DbManager {
     public Player getPlayer(String email) {
 
         Player pfound = null;
+        
+        try {
+            
+            String query = "select * from Player where email = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if(rs.next()) {
 
-        for (int i = 0; i < playerList.size(); i++) {
-
-            if (playerList.get(i).getEmail().equalsIgnoreCase(email)) {
-
-                pfound = playerList.get(i);
-
-                break;
+                pfound = new Player();
+                pfound.setid(rs.getInt(1));
+                pfound.setfirstName(rs.getString(2));
+                pfound.setlastName(rs.getString(3));
+                pfound.setScore(rs.getInt(6));
+                pfound.setEmail(rs.getString(4));
+                pfound.setPassword(rs.getString(5));
+                pfound.setStatus(rs.getInt(7));
+                
             }
-
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DbManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return pfound;
-
     }
 
     //SignUP
@@ -100,7 +112,7 @@ public class DbManager {
         int score = 0;
 
         //Adding New Palyer
-        if (playerList.size() == 0 || getPlayer(email) == null) {
+        if (playerList.isEmpty() || getPlayer(email) == null) {
 
             Player newPlayer = new Player();
             newPlayer.setfirstName(fName);
@@ -109,16 +121,16 @@ public class DbManager {
             newPlayer.setPassword(password);
             newPlayer.setScore(score);
             playerList.add(newPlayer);
-            String query = "INSERT INTO Player Values(?,?,?,?,?,?)";
+            String query = "INSERT INTO Player (firstname,lastname, email, password, score, status) Values(?,?,?,?,?,?)";
 
             pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, 0);
-            pstmt.setString(2, fName);
-            pstmt.setString(3, lName);
-            pstmt.setInt(6, score);
-            pstmt.setString(4, email);
-            pstmt.setString(5, password);
-
+          //  pstmt.setInt(1, 0);
+            pstmt.setString(1, fName);
+            pstmt.setString(2, lName);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            pstmt.setInt(5, score);
+            pstmt.setInt(6, 1);
             pstmt.executeUpdate();
             return true;
 
@@ -132,49 +144,27 @@ public class DbManager {
     }
 
     // Updating Score 
-    public void updateScore(int score, String email) throws SQLException {
+    public void updateScore(String email) throws SQLException {
 
-        int oldScore = getPlayer(email).getScore();
-        score += oldScore;
+        int newScore = getPlayer(email).getScore() + 1;
+        
         String query = "update Player set score =? where email=?";
         pstmt = conn.prepareStatement(query);
-        pstmt.setInt(1, score);
+        pstmt.setInt(1, newScore);
         pstmt.setString(2, email);
         pstmt.executeUpdate();
-        playerList.clear();
-        playerList = getAllPlayers();
-
+       
+    }
+    
+    public void updateStatus(int state, String email) throws SQLException {
+       
+        String query = "update Player set status = ? where email = ?";
+        pstmt = conn.prepareStatement(query);
+        pstmt.setInt(1, state);
+        pstmt.setString(2, email);
+        pstmt.executeUpdate();
+       
     }
 
-    public static void main(String args[]) {
-
-        try {
-            DbManager db = new DbManager();
-
-            if (db.connect()) {
-                System.out.println("DB connected");
-
-                try {
-                    if (db.addPlayer("HossamMohamedHWAFBsdsd", "Gomaa", "Hossssm@g.com", "123456")) {
-                        System.out.println("Player Added Successfully");
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(DbManager.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                ArrayList<Player> list = null;
-                list = db.getAllPlayers();
-
-                for (Player p : list) {
-                    System.out.println(p.getfirstName() + " " + p.getlastName());
-                }
-
-            } else {
-                System.out.println("Can't connect");
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DbManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
 }

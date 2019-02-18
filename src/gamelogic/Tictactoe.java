@@ -4,12 +4,13 @@ public class Tictactoe {
 
     private int[][] board = {{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
     private int currentPlayerMark;
+    private int comRow;
+    private int comCol;
 
     public int getCurrentPlayerMark() {
         return currentPlayerMark;
     }
 
-    
     public Tictactoe() {
         currentPlayerMark = 1;
     }
@@ -64,7 +65,7 @@ public class Tictactoe {
         } else {
             currentPlayerMark = 1;
         }
-        
+
     }
 
     public boolean placeMark(int row, int col) {
@@ -81,21 +82,40 @@ public class Tictactoe {
         return false;
     }
 
-    public static void main(String[] args) {
+    public int playComputer() {
+        comRow = (int) Math.floor(Math.random() * 3);
+        comCol = (int) Math.floor(Math.random() * 3);
 
-        Tictactoe game = new Tictactoe();
-
-        game.placeMark(0, 2);
-
-        if (game.checkForWin()) {
-            System.out.println("We have a winner! Congrats!");
-            System.exit(0);
-        } else if (game.isBoardFull()) {
-            System.out.println("Appears we have a draw!");
-            System.exit(0);
+        while (board[comRow][comCol] != -1 && comCol < 3 && comRow < 3) {
+            comRow = (int) Math.floor(Math.random() * 3);
+            comCol = (int) Math.floor(Math.random() * 3);
         }
 
-        game.changePlayer();
+        board[comRow][comCol] = 0;
+        System.out.println(comRow + " " + comCol);
 
+        int comImageNo = 0;
+        if (comRow == 0 && comCol == 0) {
+            comImageNo = 1;
+        } else if (comRow == 0 && comCol == 1) {
+            comImageNo = 2;
+        } else if (comRow == 0 && comCol == 2) {
+            comImageNo = 3;
+        } else if (comRow == 1 && comCol == 0) {
+            comImageNo = 4;
+        } else if (comRow == 1 && comCol == 1) {
+            comImageNo = 5;
+        } else if (comRow == 1 && comCol == 2) {
+            comImageNo = 6;
+        } else if (comRow == 2 && comCol == 0) {
+            comImageNo = 7;
+        } else if (comRow == 2 && comCol == 1) {
+            comImageNo = 8;
+        } else if (comRow == 2 && comCol == 2) {
+            comImageNo = 9;
+        }
+
+        return comImageNo;
     }
+
 }
