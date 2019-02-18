@@ -2,12 +2,14 @@
 package TicTacToeGame;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class TicTacToeGame extends Application {
+public class TicTacToeGame extends Application implements EventHandler<WindowEvent>{
     
     private static Stage gStage;
     @Override
@@ -18,7 +20,9 @@ public class TicTacToeGame extends Application {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setOnHiding(this);
         gStage = stage;
+        
         stage.show();
     }
 
@@ -31,4 +35,13 @@ public class TicTacToeGame extends Application {
         launch(args);
     }
     
+    @Override  
+  public void stop() throws Exception {  
+  }  
+
+    @Override  
+  public void handle(WindowEvent event) {  
+        FXMLDocumentController controller = new FXMLDocumentController();
+        controller.stopStage();
+  }  
 }

@@ -1,8 +1,14 @@
 package TicTacToeGame;
 
 import gamelogic.Tictactoe;
+import helpers.DbManager;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -11,6 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import login.LoginFxmlController;
 import networking.Client;
 
 public class FXMLDocumentController implements Initializable {
@@ -56,6 +65,7 @@ public class FXMLDocumentController implements Initializable {
     private int player;
     private Client client;
     Tictactoe game;
+    
     Alert winAlert, loseAlert, drawAlert;
     private int playerMark = 0;
 
@@ -71,11 +81,10 @@ public class FXMLDocumentController implements Initializable {
             if (playerMark == game.getCurrentPlayerMark()) {
 
                 System.out.println("Congratulations you have won the game !");
-                
+
             } else {
 
                 System.out.println("Sorry you have lost the game !");
-                
 
             }
             return;
@@ -202,9 +211,9 @@ public class FXMLDocumentController implements Initializable {
 
     public void init() {
         game = new Tictactoe();
+       
 
-        client = new Client("127.0.0.1", 5005, username);
-        client.start();
+        client = LoginFxmlController.getClient();
 
         new Thread(new Runnable() {
 
@@ -234,4 +243,19 @@ public class FXMLDocumentController implements Initializable {
         }).start();
     }
 
+    public void stopStage() {
+        try {
+            System.out.println("Stage is closing");
+             DbManager db = new DbManager();
+             Client c = LoginFxmlController.getClient();
+            if (db.connect()) {
+                c.send("Closing");
+                db.updateStatus(0, c.getUsername());
+
+            }
+            System.exit(0);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

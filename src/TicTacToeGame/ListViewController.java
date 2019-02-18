@@ -137,6 +137,7 @@ public class ListViewController implements Initializable {
             public void run() {
                 String msg;
                 msg = client.recieve();
+                
                 String[] separatedMsg = msg.split("\\$");
                 if (separatedMsg[0].equalsIgnoreCase("challenge")) {
                     Platform.runLater(new Runnable() {
