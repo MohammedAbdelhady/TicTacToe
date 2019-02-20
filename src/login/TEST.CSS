@@ -26,3 +26,26 @@
     -fx-background-color: black;
 
 }
+
+.clientButton{
+    -fx-background-color:#1E90FF;
+  -fx-border-radius: 100px;
+  -fx-text-fill: #fff;
+  -fx-boarder-width: 5px;
+  -fx-position:relative;
+  -fx-height:60px;
+  -fx-font-size:14;
+  -fx-cursor:pointer;
+  -fx-transition:800ms ease all;
+  -fx-outline:none;
+}
+
+.clientButton:hover{
+  -fx-background-color:#fff;
+  -fx-background-raduis: 22;
+  -fx-font-size: 14;
+  -fx-text-fill: #1E90FF;
+  -fx-boarder-color: #1E90FF;
+  -fx-borader-raduis: 100;
+  -fx-boarder-width: 20;
+}

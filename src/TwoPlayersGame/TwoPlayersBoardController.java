@@ -1,5 +1,6 @@
 package TwoPlayersGame;
 
+import TicTacToeGame.ListViewController;
 import TicTacToeGame.TicTacToeGame;
 import gamelogic.Tictactoe;
 import helpers.DbManager;
@@ -74,6 +75,7 @@ public class TwoPlayersBoardController implements Initializable {
     private Client client;
     private Tictactoe game;
     DbManager db;
+    Thread th;
     private int playerMark = 0;
 
     public void handleImageViewClick(ImageView imageViewInAction, int row, int col) {
@@ -237,8 +239,9 @@ public class TwoPlayersBoardController implements Initializable {
             if (db.connect()) {
 
                 System.out.println("username : " + username + " opponent : " + this.opponent);
-                new Thread(new Runnable() {
-
+             
+                th = new Thread(new Runnable() {
+                    
                     @Override
                     public void run() {
 
@@ -259,15 +262,20 @@ public class TwoPlayersBoardController implements Initializable {
                             } else if (separatedMsg[0].equalsIgnoreCase("lost")) {
                                 client.display(msg);
                                 showLosingAlert();
+                                break;
                             } else if (separatedMsg[0].equalsIgnoreCase("draw")) {
                                 client.display(msg);
                                 showDrawAlert();
+                                break;
                             }
 
                         }
-
+                        
+                        th.stop();
                     }
-                }).start();
+                });
+                     
+              th.start();
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -307,6 +315,7 @@ public class TwoPlayersBoardController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = TicTacToeGame.getgStage();
                         stage.setScene(scene);
+                        ListViewController.createNewClientThread();
                         stage.show();
                     } catch (IOException | SQLException ex) {
                         Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -337,6 +346,7 @@ public class TwoPlayersBoardController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = TicTacToeGame.getgStage();
                         stage.setScene(scene);
+                        ListViewController.createNewClientThread();
                         stage.show();
                     } catch (IOException | SQLException ex) {
                         Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -367,6 +377,7 @@ public class TwoPlayersBoardController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = TicTacToeGame.getgStage();
                         stage.setScene(scene);
+                        ListViewController.createNewClientThread();
                         stage.show();
                     } catch (IOException | SQLException ex) {
                         Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);

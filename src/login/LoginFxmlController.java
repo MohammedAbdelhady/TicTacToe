@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import models.Player;
 import helpers.DbManager;
 import networking.Client;
+import TicTacToeGame.ListViewController;
 
 public class LoginFxmlController implements Initializable {
 
@@ -54,12 +55,13 @@ public class LoginFxmlController implements Initializable {
                     client = new Client("127.0.0.1", 5005, playerFounded.getEmail());
                     client.start();
                     db.updateStatus(1, playerFounded.getEmail());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/TicTacToeGame/listview.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/TicTacToeGame/listview.fxml"));    
                     Parent root = loader.load();
 
                     Scene scene = new Scene(root);
                     Stage stage = TicTacToeGame.getgStage();
                     stage.setScene(scene);
+                    ListViewController.createNewClientThread();
                     stage.show();
                 } else {
                     found.setText("This User Not Found Check Your Data or SignUp");

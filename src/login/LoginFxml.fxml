@@ -3,13 +3,11 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -50,15 +48,6 @@
       </Button>
       <TextField fx:id="Temail" layoutX="190.0" layoutY="284.0" prefHeight="31.0" prefWidth="236.0" />
       <PasswordField fx:id="Tpassword" layoutX="190.0" layoutY="348.0" prefHeight="31.0" prefWidth="236.0" />
-      <Label fx:id="found" layoutX="189.0" layoutY="244.0" prefHeight="37.0" prefWidth="236.0" wrapText="true">
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="BLACK" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </textFill>
-      </Label>
+      <Label fx:id="found" layoutX="189.0" layoutY="244.0" prefHeight="37.0" prefWidth="236.0" textFill="RED" wrapText="true" />
     </children>
 </AnchorPane>

@@ -1,16 +1,33 @@
 package PlayWithComputer;
 
+import TicTacToeGame.ListViewController;
+import TicTacToeGame.TicTacToeGame;
+import TwoPlayersGame.TwoPlayersBoardController;
 import gamelogic.Tictactoe;
+import helpers.DbManager;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml. Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import login.LoginFxmlController;
 import networking.Client;
 
 public class PlayWithComputerController implements Initializable {
@@ -53,7 +70,7 @@ public class PlayWithComputerController implements Initializable {
 
     @FXML
     private TextArea chatArea;
-
+    DbManager db;
     private Client client;
     private Tictactoe game;
 
@@ -67,10 +84,12 @@ public class PlayWithComputerController implements Initializable {
         if (game.checkForWin()) {
             System.out.println("We have a winner! Congrats to " + game.getCurrentPlayerMark());
             System.out.println("1st image clicked");
+            showWinningAlert();
             boardPane.setDisable(true);
             return;
         } else if (game.isBoardFull()) {
             System.out.println("Appears we have a draw!");
+            showLosingAlert();
             return;
         }
         
@@ -115,6 +134,7 @@ public class PlayWithComputerController implements Initializable {
         if (game.checkForWin()) {
             System.out.println("We have a winner! Congrats to " + game.getCurrentPlayerMark());
             System.out.println("1st image clicked");
+            
             boardPane.setDisable(true);
 
             return;
@@ -185,8 +205,78 @@ public class PlayWithComputerController implements Initializable {
     }
     
     public void init(){
-        game = new Tictactoe();
+        try {
+            game = new Tictactoe();
+            db = new DbManager();
+            db.connect();
+            client = LoginFxmlController.getClient();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PlayWithComputerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
    }
+    
+    private void showLosingAlert() {
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Losing Notification");
+                alert.setHeaderText("Losing");
+                alert.setContentText("Sorry you have lost the game !");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        db.updateStatus(1, client.getUsername());
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TicTacToeGame/listview.fxml"));
+                        Parent root = loader.load();
+
+                        Scene scene = new Scene(root);
+                        Stage stage = TicTacToeGame.getgStage();
+                        stage.setScene(scene);
+                        ListViewController.createNewClientThread();
+                        stage.show();
+                    } catch (IOException | SQLException ex) {
+                        Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                }
+            }
+        });
+    }
+
+    private void showWinningAlert() {
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Winning Notification");
+                alert.setHeaderText("Winner");
+                alert.setContentText("Congratulations you have won the game !");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        db.updateStatus(1, client.getUsername());
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TicTacToeGame/listview.fxml"));
+                        Parent root = loader.load();
+
+                        Scene scene = new Scene(root);
+                        Stage stage = TicTacToeGame.getgStage();
+                        stage.setScene(scene);
+                        ListViewController.createNewClientThread();
+                        stage.show();
+                    } catch (IOException | SQLException ex) {
+                        Logger.getLogger(TwoPlayersBoardController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                }
+            }
+        });
+
+    }
 
 }

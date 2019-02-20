@@ -70,7 +70,7 @@ public class ListViewController implements Initializable {
 
         observableList.setAll(db.getAllPlayers());
 
-        this.createNewClientThread();
+        
 
     }
 
@@ -114,11 +114,11 @@ public class ListViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PlayWithComputer/PlaywithComputer.fxml"));
         Parent root = loader.load();
         PlayWithComputerController controller = loader.getController();
-
+        controller.init();
         Scene scene = new Scene(root);
         Stage stage = TicTacToeGame.getgStage();
         stage.setScene(scene);
-        stage.setOnShowing((WindowEvent e) -> controller.init());
+       
         stage.show();
     }
 
@@ -129,7 +129,7 @@ public class ListViewController implements Initializable {
 
     }
 
-    private static void createNewClientThread() {
+    public static void createNewClientThread() {
         client = LoginFxmlController.getClient();
 
         th = new Thread(new Runnable() {
@@ -200,9 +200,8 @@ public class ListViewController implements Initializable {
 
         th.start();
     }
-}
-
-class ListViewCell extends ListCell<Player> {
+    
+    class ListViewCell extends ListCell<Player> {
 
     @Override
     public void updateItem(Player p, boolean empty) {
@@ -217,3 +216,6 @@ class ListViewCell extends ListCell<Player> {
         }
     }
 }
+
+}
+

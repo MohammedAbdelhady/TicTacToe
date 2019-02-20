@@ -40,12 +40,7 @@
             <Image url="@picturetopeople.org-fcd773ea5c0c68e596dd0382657e3f464db7b54c798fb61d2b.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="86.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@picturetopeople.org-ae486e1c9ebb017c81d9d77edb8fe1b8bd8ea259abbb4560e2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="112.0" layoutX="69.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="36.0" fitWidth="112.0" layoutX="69.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@picturetopeople.org-cdaac54d2d41ec62fe227fe3a1b565941d1a4d05cb6c70b72a.png" />
          </image>
@@ -57,5 +52,15 @@
       <PasswordField fx:id="cpass" layoutX="238.0" layoutY="375.0" prefHeight="25.0" prefWidth="209.0" />
       <Button layoutX="157.0" layoutY="434.0" mnemonicParsing="false" onAction="#signUp" prefHeight="39.0" prefWidth="187.0" styleClass="loginButton" stylesheets="@TEST.CSS" text="Sign up" textFill="WHITE" />
       <Label fx:id="found" layoutX="49.0" layoutY="125.0" prefHeight="34.0" prefWidth="398.0" textFill="#f50606" wrapText="true" />
+      <ImageView fitHeight="25.0" fitWidth="86.0" layoutX="31.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@picturetopeople.org-4dfa2c2c23ee331f8aead751cb6bcec42a36c2b251c27ec7b7.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="98.0" layoutX="120.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@picturetopeople.org-cdaac54d2d41ec62fe227fe3a1b565941d1a4d05cb6c70b72a.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
